@@ -2,10 +2,13 @@ package com.shagalalab.foosballranking.view.dashboard
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
@@ -16,6 +19,7 @@ import com.shagalalab.foosballranking.model.db.entity.ResultData
 import com.shagalalab.foosballranking.model.db.entity.Statistics
 import com.shagalalab.foosballranking.presenter.DashboardPresenter
 import com.shagalalab.foosballranking.view.main.RouterHelper
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import javax.inject.Inject
 
 class DashboardFragment : Fragment(), DashboardView {
@@ -23,9 +27,22 @@ class DashboardFragment : Fragment(), DashboardView {
     private lateinit var resultsAdapter: ResultsAdapter
     private lateinit var rankingAdapter: RankingAdapter
 
+    companion object {
+        private val instance: DashboardFragment = DashboardFragment()
+
+        fun getInstance(): DashboardFragment {
+            return instance
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (activity?.application as FoosballApp).component.inject(this)
+
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity).supportActionBar?.title = "Dashboard"
+        }
+
         presenter.init(this)
     }
 
@@ -37,7 +54,6 @@ class DashboardFragment : Fragment(), DashboardView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        view.findViewById<RecyclerView>(R.id.dashboardLastResultsList)
 
         resultsAdapter = ResultsAdapter()
         with(view.findViewById<RecyclerView>(R.id.dashboardLastResultsList)) {
@@ -65,7 +81,14 @@ class DashboardFragment : Fragment(), DashboardView {
     }
 
     override fun updateLastResults(result: List<ResultData>) {
-        resultsAdapter.update(result)
+        if (result.isEmpty()) {
+            dashboardEmpty.visibility = VISIBLE
+            dashboardMain.visibility = GONE
+        } else {
+            dashboardEmpty.visibility = GONE
+            dashboardMain.visibility = VISIBLE
+            resultsAdapter.update(result)
+        }
     }
 
     override fun updateResultsFailed(throwable: Throwable) {
@@ -73,6 +96,13 @@ class DashboardFragment : Fragment(), DashboardView {
     }
 
     override fun updateRanking(sortedBy: List<Statistics>) {
-        rankingAdapter.update(sortedBy)
+        if (sortedBy.isEmpty()) {
+            dashboardEmpty.visibility = VISIBLE
+            dashboardMain.visibility = GONE
+        } else {
+            dashboardEmpty.visibility = GONE
+            dashboardMain.visibility = VISIBLE
+            rankingAdapter.update(sortedBy.take(5))
+        }
     }
 }

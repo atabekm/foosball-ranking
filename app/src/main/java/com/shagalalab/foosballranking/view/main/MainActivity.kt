@@ -65,10 +65,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun switchToFragment(screenId: String) {
         supportFragmentManager.beginTransaction().replace(R.id.mainContainer, when(screenId){
-            SCREEN_DASHBOARD -> DashboardFragment()
-            SCREEN_RESULTS -> ResultsFragment()
-            SCREEN_RANKINGS -> RankingsFragment()
-            else -> DashboardFragment()
-        }).addToBackStack(screenId).commit()
+            SCREEN_DASHBOARD -> DashboardFragment.getInstance()
+            SCREEN_RESULTS -> ResultsFragment.getInstance()
+            SCREEN_RANKINGS -> RankingsFragment.getInstance()
+            else -> DashboardFragment.getInstance()
+        }).commit()
     }
 }

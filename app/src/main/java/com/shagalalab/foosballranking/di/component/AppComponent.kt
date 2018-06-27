@@ -8,6 +8,8 @@ import com.shagalalab.foosballranking.di.module.RepositoryModule
 import com.shagalalab.foosballranking.view.addresult.AddResultActivity
 import com.shagalalab.foosballranking.view.dashboard.DashboardFragment
 import com.shagalalab.foosballranking.view.participants.ParticipantsActivity
+import com.shagalalab.foosballranking.view.ranking.RankingsFragment
+import com.shagalalab.foosballranking.view.result.ResultsFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -18,4 +20,6 @@ interface AppComponent {
     fun inject(activity: AddResultActivity)
     fun inject(activity: ParticipantsActivity)
     fun inject(fragment: DashboardFragment)
+    fun inject(fragment: ResultsFragment)
+    fun inject(fragment: RankingsFragment)
 }

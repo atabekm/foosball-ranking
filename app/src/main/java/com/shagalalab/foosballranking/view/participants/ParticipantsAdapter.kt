@@ -22,7 +22,6 @@ class ParticipantsAdapter(var currentValue: String) : RecyclerView.Adapter<Singl
         val item = items[position]
         holder.name.text = item.name
         holder.radio.isChecked = (position == selectedItemId || currentValue == item.name)
-//        holder.itemView.isEnabled = position == 0
         holder.itemView.setOnClickListener {
             currentValue = ""
             selectedItemId = holder.adapterPosition

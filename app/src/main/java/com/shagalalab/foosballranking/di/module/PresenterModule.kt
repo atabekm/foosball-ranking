@@ -6,6 +6,8 @@ import com.shagalalab.foosballranking.model.repository.TeamsRepository
 import com.shagalalab.foosballranking.presenter.AddResultPresenter
 import com.shagalalab.foosballranking.presenter.DashboardPresenter
 import com.shagalalab.foosballranking.presenter.ParticipantsPresenter
+import com.shagalalab.foosballranking.presenter.RankingsPresenter
+import com.shagalalab.foosballranking.presenter.ResultsPresenter
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -25,4 +27,12 @@ class PresenterModule {
     @Singleton
     @Provides
     fun providesMainPresenter(resultsRepository: ResultsRepository) = DashboardPresenter(resultsRepository)
+
+    @Singleton
+    @Provides
+    fun providesResultsPresenter(resultsRepository: ResultsRepository) = ResultsPresenter(resultsRepository)
+
+    @Singleton
+    @Provides
+    fun providesRankingsPresenter(resultsRepository: ResultsRepository) = RankingsPresenter(resultsRepository)
 }
