@@ -7,11 +7,17 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import com.shagalalab.foosballranking.Constants.Companion.SCREEN_DASHBOARD
+import com.shagalalab.foosballranking.Constants.Companion.SCREEN_RANKINGS
+import com.shagalalab.foosballranking.Constants.Companion.SCREEN_RESULTS
 import com.shagalalab.foosballranking.R
 import com.shagalalab.foosballranking.view.addresult.AddResultActivity
+import com.shagalalab.foosballranking.view.dashboard.DashboardFragment
+import com.shagalalab.foosballranking.view.ranking.RankingsFragment
+import com.shagalalab.foosballranking.view.result.ResultsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, RouterHelper {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +33,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
+
+        switchToFragment(SCREEN_DASHBOARD)
     }
 
     override fun onBackPressed() {
@@ -41,20 +49,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_dashboard -> {
-                // Handle the camera action
+                switchToFragment(SCREEN_DASHBOARD)
             }
             R.id.nav_results -> {
-
+                switchToFragment(SCREEN_RESULTS)
             }
             R.id.nav_ranking -> {
-
-            }
-            R.id.nav_versus -> {
-
+                switchToFragment(SCREEN_RANKINGS)
             }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun switchToFragment(screenId: String) {
+        supportFragmentManager.beginTransaction().replace(R.id.mainContainer, when(screenId){
+            SCREEN_DASHBOARD -> DashboardFragment()
+            SCREEN_RESULTS -> ResultsFragment()
+            SCREEN_RANKINGS -> RankingsFragment()
+            else -> DashboardFragment()
+        }).addToBackStack(screenId).commit()
     }
 }

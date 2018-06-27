@@ -12,6 +12,6 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun providesDatabase(context: Context) = Room.databaseBuilder(context, FoosballDatabase::class.java, "qarejet.db").build()
+    fun providesDatabase(context: Context) = Room.databaseBuilder(context, FoosballDatabase::class.java, "foosball.db").build()
 
 }

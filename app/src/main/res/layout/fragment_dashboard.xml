@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <TextView
+        android:id="@+id/dashboardLastResultsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_5_results"/>
+
+    <TextView
+        android:id="@+id/dashboardLastResultsMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="@string/show_more"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dashboardLastResultsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@id/dashboardLastResultsTitle"/>
+
+    <TextView
+        android:id="@+id/dashboardLastRankingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dashboardLastResultsList"
+        android:text="@string/top_5_ranking"/>
+
+    <TextView
+        android:id="@+id/dashboardLastRankingMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/dashboardLastResultsList"
+        android:text="@string/show_more"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dashboardTopRankingList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dashboardLastRankingTitle"/>
+
+</RelativeLayout>

@@ -12,7 +12,9 @@ class Constants {
         const val FORMATION_2_VS_2 = 2
         const val SELECTION_VALUE = "selection_value"
         const val CURRENT_VALUE = "current_value"
-        const val DISABLED_VALUES = "disabled_values"
+        const val SCREEN_DASHBOARD = "SCREEN_DASHBOARD"
+        const val SCREEN_RESULTS = "SCREEN_RESULTS"
+        const val SCREEN_RANKINGS = "SCREEN_RANKINGS"
     }
 
 }

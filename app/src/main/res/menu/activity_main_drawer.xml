@@ -11,14 +11,10 @@
         <item
             android:id="@+id/nav_results"
             android:icon="@drawable/ic_format_list_bulleted_black_24dp"
-            android:title="@string/result"/>
+            android:title="@string/results"/>
         <item
             android:id="@+id/nav_ranking"
             android:icon="@drawable/ic_assessment_black_24dp"
             android:title="@string/ranking"/>
-        <item
-            android:id="@+id/nav_versus"
-            android:icon="@drawable/ic_swap_horiz_black_24dp"
-            android:title="@string/versus"/>
     </group>
 </menu>

@@ -6,7 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="dashboard">Dashboard</string>
-    <string name="result">Result</string>
+    <string name="results">Results</string>
     <string name="ranking">Ranking</string>
     <string name="versus">Versus</string>
     <string name="add_result">Add result</string>
@@ -24,6 +24,9 @@
     <string name="cancel">Cancel</string>
     <string name="no_participants_have_been_added_yet">No participants have been added yet</string>
     <string name="change">Change</string>
+    <string name="last_5_results">Last 5 results</string>
+    <string name="show_more"><![CDATA[Show more >]]></string>
+    <string name="top_5_ranking">Top 5 ranking</string>
 
     <string-array name="formation">
         <item>1 x 1</item>

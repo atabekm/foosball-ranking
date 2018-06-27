@@ -2,6 +2,8 @@ package com.shagalalab.foosballranking.model.repository
 
 import com.shagalalab.foosballranking.model.db.FoosballDatabase
 import com.shagalalab.foosballranking.model.db.entity.Result
+import com.shagalalab.foosballranking.model.db.entity.ResultData
+import io.reactivex.Single
 
 class ResultsRepository(private val database: FoosballDatabase) {
 
@@ -11,10 +13,16 @@ class ResultsRepository(private val database: FoosballDatabase) {
             .insertResult(result)
     }
 
-    fun getResults() {
-        database
+    fun getResults(): Single<List<ResultData>> {
+        return database
             .resultsDao()
             .getResults()
+    }
+
+    fun getLast5Results(): Single<List<ResultData>> {
+        return database
+            .resultsDao()
+            .getLast5Results()
     }
 
 }
